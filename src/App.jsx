@@ -8,6 +8,7 @@ import VanDetail from "../src/pages/VanDetail.jsx";
 import Vans from "../src/pages/Vans.jsx";
 import Header from "../src/components/Header.jsx";
 import Footer from "../src/components/Footer.jsx";
+import "./server.js";
 
 export default function App() {
   return (
