@@ -6,18 +6,28 @@ import About from "../src/pages/About.jsx";
 import Login from "../src/pages/Login.jsx";
 import VanDetail from "../src/pages/VanDetail.jsx";
 import Vans from "../src/pages/Vans.jsx";
+import Header from "../src/components/Header.jsx";
+import Footer from "../src/components/Footer.jsx";
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home></Home>} />
-          <Route path="/about" element={<About></About>} />
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/vandetail" element={<VanDetail></VanDetail>} />
-          <Route path="/vans" element={<Vans></Vans>} />
-        </Routes>
+        <div className="app">
+          <Header />
+
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/vandetail" element={<VanDetail />} />
+              <Route path="/vans" element={<Vans />} />
+            </Routes>
+          </main>
+
+          <Footer />
+        </div>
       </BrowserRouter>
     </>
   );
