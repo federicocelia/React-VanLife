@@ -1,22 +1,40 @@
+/* =========================================
+   RESET
+========================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =========================================
+   CSS VARIABLES
+========================================= */
+
 :root {
   --header-background-color: #fff7ed;
   --header-nav-color: #4d4d4d;
   --header-nav-color-active: #161616;
+
   --footer-background-color: #252525;
   --footer-color: #aaaaaa;
 
   --home-text-color: #ffffff;
+  --basic-text-color: #161616;
 
-  --cta-btn-background: #ff8c38;
+  --btn-text-basic-color: #4d4d4d;
+  --btn-basic-background-color: #ffead0;
+
+  --cta-btn-background-active: #ff8c38;
+  --about-cta-background: #ffcc8d;
 
   --border-radius: 0.35rem;
 }
+
+/* =========================================
+   GLOBAL LAYOUT
+========================================= */
 
 html,
 body,
@@ -24,113 +42,275 @@ body,
   min-height: 100vh;
 }
 
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--basic-text-color);
+}
+
 #root {
   display: flex;
 }
 
 .app {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
+
   min-height: 100vh;
 }
 
 main {
-  flex: 1;
   display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
-body {
-  font-family: "Inter", sans-serif;
-}
+/* =========================================
+   HEADER
+========================================= */
 
 header {
-  background-color: var(--header-background-color);
   width: 100%;
+
+  background-color: var(--header-background-color);
 }
 
 .header {
   display: flex;
+  flex-wrap: wrap;
+
   justify-content: space-between;
   align-items: center;
-  padding-inline: 1.5rem;
-  min-height: 112px;
+
   max-width: 900px;
+  min-height: 112px;
+
   margin: 0 auto;
+  padding-inline: 1.5rem;
 }
+
+.brand-container {
+  max-width: 150px;
+
+  margin-right: 1rem;
+}
+
+.brand,
+.background-img {
+  min-width: 100px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
 
 .navigation {
   display: flex;
+  flex-wrap: wrap;
+
   align-items: center;
-  list-style: none;
   gap: 1.5rem;
-  color: var(--header-nav-color);
+
+  list-style: none;
+
   font-size: 1rem;
   font-weight: 600;
+  color: var(--header-nav-color);
 }
+
 .nav-link {
   text-decoration: none;
   text-underline-offset: 4px;
 }
+
 .nav-link:hover,
 .nav-link:focus {
-  text-decoration: underline;
   color: var(--header-nav-color-active);
+
+  text-decoration: underline;
 }
 
 .nav-link:visited {
   color: var(--header-nav-color);
 }
 
-.brand-container {
-  max-width: 150px;
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn {
+  cursor: pointer;
+
+  color: var(--btn-text-basic-color);
+  background-color: var(--btn-basic-background-color);
 }
 
-.brand,
-.background-img {
-  max-width: 100%;
-  min-width: 100px;
-  height: auto;
+/* =========================================
+   HOME PAGE
+========================================= */
+
+.hero-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  flex: 1;
-  color: var(--home-text-color);
   padding: 4rem 1.65rem;
-  display: flex;
-  flex-direction: column;
+
+  color: var(--home-text-color);
 }
 
 .hero-title {
-  font-size: 2.25rem;
   margin-bottom: 1.37rem;
+
+  font-size: 2.25rem;
 }
+
 .hero-subtitle {
-  font-size: 1rem;
   margin-bottom: 3.25rem;
+
+  font-size: 1rem;
 }
+
 .cta-hero-btn {
-  font-family: "inter", sans-serif;
-  font-weight: 800;
-  color: var(--home-text-color);
-  background-color: var(--cta-btn-background);
+  display: block;
+
   width: 100%;
   max-width: 500px;
-  padding: 1rem 1.75rem;
+
   margin: 0 auto;
+  padding: 1rem 1.75rem;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+
+  color: var(--home-text-color);
+
   border: none;
   border-radius: var(--border-radius);
+
+  background-color: var(--cta-btn-background-active);
 }
+
+.cta-hero-btn:hover,
+.cta-hero-btn:focus {
+  color: var(--btn-text-basic-color);
+  background-color: var(--btn-basic-background-color);
+}
+
+/* =========================================
+   ABOUT PAGE
+========================================= */
+
+.about-section {
+  padding: 2.5rem 1.65rem;
+}
+
+.about-title {
+  margin-bottom: 1.37rem;
+
+  font-size: 2rem;
+}
+
+.about-text {
+  margin-bottom: 1rem;
+
+  font-size: 1rem;
+}
+
+.about-img-container {
+  width: 100%;
+  height: clamp(180px, 30vh, 450px);
+
+  overflow: hidden;
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.about-cta-section {
+  margin: 2.5rem auto 0.5rem;
+  padding: 2rem;
+
+  border-radius: var(--border-radius);
+
+  background-color: var(--about-cta-background);
+}
+
+.about-cta-section p {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.cta-about-btn {
+  display: inline-block;
+
+  max-width: 200px;
+
+  margin: 1.6rem auto 0 0;
+  padding: 0.8rem 2rem;
+
+  font-weight: 800;
+  text-decoration: none;
+
+  color: #ffffff;
+
+  border-radius: var(--border-radius);
+
+  background-color: #161616;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
 
 footer {
   display: flex;
+
   justify-content: center;
   align-items: center;
+
   min-height: 75px;
+
   font-size: 0.875rem;
-  background-color: var(--footer-background-color);
   color: var(--footer-color);
+
+  background-color: var(--footer-background-color);
+}
+
+/* =========================================
+   MEDIA QUERIES
+========================================= */
+
+@media (min-width: 700px) {
+  .hero,
+  .about-section {
+    max-width: 800px;
+
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  .hero-container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta-hero-btn {
+    margin: 1.6rem auto;
+  }
 }
