@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 export default function Vans() {
@@ -45,23 +46,28 @@ export default function Vans() {
   const vansElement = displayedVans.map((van) => {
     return (
       <article key={van.id} className="list-van">
-        <div className="list-van-img-container">
-          <img
-            className="list-van-img"
-            src={van.imageUrl}
-            alt={`minivan type ${van.type} ${van.name}`}
-          />
-        </div>
-        <div className="list-van-name">
-          <h3>{van.name}</h3>
-          <p className="list-day-price">
-            ${van.price}
-            <span className="list-day-price-duration">/day</span>
+        <Link
+          to={`/vans/${van.id}`}
+          aria-label={`View details for ${van.name} priced at $${van.price} per day`}
+        >
+          <div className="list-van-img-container">
+            <img
+              className="list-van-img"
+              src={van.imageUrl}
+              alt={`minivan type ${van.type} ${van.name}`}
+            />
+          </div>
+          <div className="list-van-name">
+            <h3>{van.name}</h3>
+            <p className="list-day-price">
+              ${van.price}
+              <span className="list-day-price-duration">/day</span>
+            </p>
+          </div>
+          <p className={clsx("van-tag", `${van.type}`)}>
+            {van.type[0].toUpperCase() + van.type.slice(1)}
           </p>
-        </div>
-        <p className={clsx("van-tag", `${van.type}`)}>
-          {van.type[0].toUpperCase() + van.type.slice(1)}
-        </p>
+        </Link>
       </article>
     );
   });
