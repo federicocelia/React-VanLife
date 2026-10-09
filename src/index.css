@@ -3,9 +3,9 @@
 ========================================= */
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 /* =========================================
@@ -30,11 +30,17 @@
   --about-cta-background: #ffcc8d;
 
   --border-radius: 0.35rem;
+
+  --van-tag-color: #ffead0;
+  --background-van-simple: #e17654;
+  --background-van-rugged: #115e59;
+  --background-van-luxury: #161616;
 }
 
 /* =========================================
    GLOBAL LAYOUT
 ========================================= */
+
 html {
   scrollbar-gutter: stable;
 }
@@ -68,6 +74,13 @@ main {
   flex-direction: column;
 }
 
+.content-container {
+  width: min(100%, 900px);
+
+  margin-inline: auto;
+  padding: 1.65rem;
+}
+
 /* =========================================
    HEADER
 ========================================= */
@@ -81,7 +94,6 @@ header {
 .header {
   display: flex;
   flex-wrap: wrap;
-
   justify-content: space-between;
   align-items: center;
 
@@ -89,7 +101,7 @@ header {
   min-height: 112px;
 
   margin: 0 auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1.65rem;
 }
 
 .brand-container {
@@ -99,7 +111,8 @@ header {
 }
 
 .brand,
-.background-img {
+.background-img,
+.list-van-img {
   min-width: 100px;
   max-width: 100%;
   height: auto;
@@ -112,8 +125,8 @@ header {
 .navigation {
   display: flex;
   flex-wrap: wrap;
-
   align-items: center;
+
   gap: 1.5rem;
 
   list-style: none;
@@ -147,6 +160,10 @@ header {
   cursor: pointer;
 
   color: var(--btn-text-basic-color);
+
+  border: none;
+  border-radius: var(--border-radius);
+
   background-color: var(--btn-basic-background-color);
 }
 
@@ -195,7 +212,6 @@ header {
   font-weight: 800;
   text-align: center;
   text-decoration: none;
-
   color: var(--home-text-color);
 
   border: none;
@@ -207,6 +223,7 @@ header {
 .cta-hero-btn:hover,
 .cta-hero-btn:focus {
   color: var(--btn-text-basic-color);
+
   background-color: var(--btn-basic-background-color);
 }
 
@@ -268,7 +285,6 @@ header {
 
   font-weight: 800;
   text-decoration: none;
-
   color: #ffffff;
 
   border-radius: var(--border-radius);
@@ -277,12 +293,155 @@ header {
 }
 
 /* =========================================
+   VANS PAGE
+========================================= */
+
+.vans-section {
+  padding: 2.5rem 1.65rem;
+}
+
+.vans-section-title {
+  margin-bottom: 1.37rem;
+
+  text-align: left;
+  font-size: 2rem;
+}
+
+.filtering-van-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  gap: 1.25rem;
+
+  margin-bottom: 3.4rem;
+}
+
+.btn-van-type {
+  padding: 0.375rem 1.625rem;
+}
+
+.clear-btn {
+  padding: 0.375rem 1.625rem;
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  border: none;
+
+  background-color: transparent;
+}
+
+.clear-btn:hover,
+.clear-btn:focus {
+  color: var(--cta-btn-background-active);
+}
+
+.btn-simple:hover,
+.btn-luxury:hover,
+.btn-rugged:hover,
+.btn-simple:focus,
+.btn-luxury:focus,
+.btn-rugged:focus {
+  color: var(--van-tag-color);
+}
+
+.btn-simple:hover,
+.btn-simple:focus {
+  background-color: var(--background-van-simple);
+}
+
+.btn-luxury:hover,
+.btn-luxury:focus {
+  background-color: var(--background-van-luxury);
+}
+
+.btn-rugged:hover,
+.btn-rugged:focus {
+  background-color: var(--background-van-rugged);
+}
+
+.vans-list-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+
+  gap: 2rem;
+}
+
+.list-van {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 27rem;
+
+  margin: 0 auto;
+
+  gap: 10px;
+}
+
+.list-van-img-container {
+  max-width: 431px;
+}
+
+.list-van-img {
+  border-radius: var(--border-radius);
+}
+
+.list-van-name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-day-price {
+  display: flex;
+  flex-wrap: wrap;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.list-day-price-duration {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.van-tag {
+  display: inline-block;
+
+  width: max-content;
+
+  padding: 4px 0.75rem;
+
+  color: var(--van-tag-color);
+
+  border-radius: var(--border-radius);
+}
+
+.van-tag.simple {
+  background-color: var(--background-van-simple);
+}
+
+.van-tag.luxury {
+  background-color: var(--background-van-luxury);
+}
+
+.van-tag.rugged {
+  background-color: var(--background-van-rugged);
+}
+
+/* =========================================
    FOOTER
 ========================================= */
 
 footer {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -298,6 +457,12 @@ footer {
    MEDIA QUERIES
 ========================================= */
 
+@media (min-width: 548px) {
+  .filtering-van-btns {
+    justify-content: flex-start;
+  }
+}
+
 @media (min-width: 700px) {
   .hero,
   .about-section {
@@ -308,7 +473,14 @@ footer {
     text-align: center;
   }
 
+  .vans-selection-filtering-section {
+    max-width: 900px;
+
+    margin: 0 auto;
+  }
+
   .hero-container {
+    display: flex;
     justify-content: center;
     align-items: center;
   }

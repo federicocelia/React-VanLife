@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import clsx from "clsx";
 
 export default function Vans() {
   // variables
@@ -20,13 +21,13 @@ export default function Vans() {
     return (
       <button
         key={vantype}
-        className={`btn btn-${vantype}`}
+        className={`btn btn-van-type btn-${vantype}`}
         aria-pressed={selectedType === vantype}
         onClick={() =>
           setSelectedType(selectedType === vantype ? null : vantype)
         }
       >
-        {vantype}
+        {vantype[0].toUpperCase() + vantype.slice(1)}
       </button>
     );
   });
@@ -43,26 +44,32 @@ export default function Vans() {
 
   const vansElement = displayedVans.map((van) => {
     return (
-      <article key={van.id}>
-        <div>
+      <article key={van.id} className="list-van">
+        <div className="list-van-img-container">
           <img
+            className="list-van-img"
             src={van.imageUrl}
             alt={`minivan type ${van.type} ${van.name}`}
           />
         </div>
         <div className="list-van-name">
           <h3>{van.name}</h3>
-          <p className="list-day-price">{van.price}</p>
-          <p className="van-tag">{van.type}</p>
+          <p className="list-day-price">
+            ${van.price}
+            <span className="list-day-price-duration">/day</span>
+          </p>
         </div>
+        <p className={clsx("van-tag", `${van.type}`)}>
+          {van.type[0].toUpperCase() + van.type.slice(1)}
+        </p>
       </article>
     );
   });
 
   return (
-    <div className="vans-container">
-      <section>
-        <h1>Explore our van options</h1>
+    <>
+      <div className="content-container">
+        <h1 className="vans-section-title">Explore our van options</h1>
         <section
           className="filtering-van-btns"
           role="group"
@@ -70,14 +77,21 @@ export default function Vans() {
         >
           {buttonsElement}
           <button
+            className="btn btn-van-type clear-btn"
             aria-label="Clear all active filters"
             onClick={() => setSelectedType(null)}
           >
             Clear filters
           </button>
         </section>
-        <section>{loading ? <p>Loading vans...</p> : vansElement}</section>
-      </section>
-    </div>
+      </div>
+      <div className="vans-container">
+        <section className="vans-section">
+          <section className="vans-list-section">
+            {loading ? <p>Loading vans...</p> : vansElement}
+          </section>
+        </section>
+      </div>
+    </>
   );
 }
