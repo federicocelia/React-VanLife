@@ -26,8 +26,8 @@ export default function Header() {
           </li>
 
           <li>
-            <Link className="nav-link" to="/account">
-              Account
+            <Link className="nav-link" to="/host">
+              Host
             </Link>
           </li>
         </ul>
