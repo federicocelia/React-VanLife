@@ -18,15 +18,16 @@ export default function App() {
         <div className="app">
           <Routes>
             <Route element={<MainLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/vans/:id" element={<VanDetail />} />
-              <Route path="/vans" element={<Vans />} />
-              <Route element={<HostLayout />}>
-                <Route path="/host" element={<Dashboard />} />
-                <Route path="/host/income" element={<Income />} />
-                <Route path="/host/reviews" element={<Reviews />} />
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="login" element={<Login />} />
+              <Route path="vans" element={<Vans />} />
+              <Route path="vans/:id" element={<VanDetail />} />
+
+              <Route path="host" element={<HostLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="income" element={<Income />} />
+                <Route path="reviews" element={<Reviews />} />
               </Route>
             </Route>
           </Routes>

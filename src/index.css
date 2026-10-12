@@ -152,6 +152,13 @@ header {
   color: var(--header-nav-color);
 }
 
+.active-link {
+  font-weight: 700;
+  text-decoration: underline;
+  border-bottom: 2px solid black;
+  text-underline-offset: 4px;
+}
+
 /* =========================================
    HOST NAVIGATION
 ========================================= */

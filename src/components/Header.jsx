@@ -1,34 +1,51 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/images/Logo.svg";
 export default function Header() {
   return (
     <header>
       <nav className="header">
         <div className="brand-container">
-          <img className="brand" src={logo} alt="VanLife logo" />
+          <NavLink
+            className={({ isActive }) => {
+              return isActive ? "active-link" : null;
+            }}
+            to="/"
+          >
+            <img className="brand" src={logo} alt="VanLife logo" />
+          </NavLink>
         </div>
         <ul className="navigation">
           <li>
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/about">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? "nav-link active-link" : "nav-link";
+              }}
+              to="/about"
+            >
               About
-            </Link>
+            </NavLink>
           </li>
 
           <li>
-            <Link className="nav-link" to="/vans">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? "nav-link active-link" : "nav-link";
+              }}
+              to="/vans"
+            >
               Vans
-            </Link>
+            </NavLink>
           </li>
 
           <li>
-            <Link className="nav-link" to="/host">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive ? "nav-link active-link" : "nav-link";
+              }}
+              to="/host"
+            >
               Host
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
