@@ -16,7 +16,7 @@ export default function HostLayout() {
               return isActive ? activeStyle : null;
             }}
             end
-            to="/host"
+            to="."
           >
             Dashboard
           </NavLink>
@@ -24,7 +24,7 @@ export default function HostLayout() {
             style={({ isActive }) => {
               return isActive ? activeStyle : null;
             }}
-            to="/host/income"
+            to="income"
           >
             Income
           </NavLink>
@@ -32,7 +32,7 @@ export default function HostLayout() {
             style={({ isActive }) => {
               return isActive ? activeStyle : null;
             }}
-            to="/host/vans"
+            to="vans"
           >
             Vans
           </NavLink>
@@ -40,7 +40,7 @@ export default function HostLayout() {
             style={({ isActive }) => {
               return isActive ? activeStyle : null;
             }}
-            to="/host/reviews"
+            to="reviews"
           >
             Reviews
           </NavLink>

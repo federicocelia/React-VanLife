@@ -490,7 +490,7 @@ header {
 
 .back-to-full-van-list {
   position: relative;
-  padding-left: 1.2em;
+  padding-left: 1.5em;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -629,6 +629,55 @@ header {
 .host-van-info {
   flex: 1;
   min-width: 0;
+}
+
+/* =========================================
+   HOST VAN DETAIL PAGE
+========================================= */
+
+.back-to-full-host-van-list {
+  display: inline-block;
+  position: relative;
+  padding-left: 1.5em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  margin-bottom: 2rem;
+}
+
+.back-to-full-host-van-list::before {
+  content: "\2190";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.host-van-detail-card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1.65rem;
+  gap: 1rem;
+  background-color: var(--clear-background);
+  align-items: center;
+}
+
+.host-van-detail-card img {
+  width: clamp(100px, 30%, 250px);
+  height: auto;
+
+  object-fit: contain;
+  border-radius: var(--border-radius);
+
+  flex-shrink: 0;
+}
+
+.host-van-detail-info {
+  flex: 1;
+  min-width: min-content;
+}
+
+.host-van-detail-info .title {
+  margin-block: 1rem;
 }
 
 /* =========================================
