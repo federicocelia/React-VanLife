@@ -198,8 +198,9 @@ header {
 
 .host-van-detail-nav {
   display: flex;
-  margin-block: 25px;
+  padding: 0 1.65rem 1.65rem 1.65rem;
   flex-wrap: wrap;
+  background-color: var(--clear-background);
 }
 
 .host-van-detail-nav a {
@@ -709,6 +710,80 @@ header {
 
 .host-van-detail-info .title {
   margin-block: 1rem;
+}
+
+/* =========================================
+   HOST VAN DETAILS subpage
+========================================= */
+
+.host-van-info-section {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 1rem 0.5rem;
+  background-color: var(--clear-background);
+  padding: 0 1.65rem 1.65rem 1.65rem;
+}
+
+.host-van-info-row {
+  display: contents;
+}
+
+.host-van-info-label {
+  font-weight: 700;
+}
+
+.host-van-info-value {
+  margin: 0;
+}
+
+/* =========================================
+   HOST VAN PRICING subpage
+========================================= */
+
+.host-van-pricing-section {
+  padding: 0 1.65rem 2.5rem;
+  background-color: var(--clear-background);
+}
+
+.host-van-pricing {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.host-van-pricing span {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+/* =========================================
+   HOST VAN PHOTOS subpage
+========================================= */
+.host-van-photos-section {
+  padding: 0 1.65rem 2.5rem;
+  background-color: var(--clear-background);
+}
+.thumbnail {
+  width: clamp(100px, 30%, 150px);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+}
+
+.image-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.full-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
 }
 
 /* =========================================

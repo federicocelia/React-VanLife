@@ -14,21 +14,21 @@ export default function HostVanDetail() {
   useEffect(() => {
     fetch(`/api/host/vans/${params.id}`)
       .then((response) => response.json())
-      .then((data) => setVan(data.vans));
+      .then((data) => setVan(data.vans[0]));
   }, [params.id]);
 
-  const vanDetailElement = van.map((van) => (
+  const vanDetailElement = (
     <>
       <article className="host-van-detail-card" key={van.id}>
         <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
         <div className="host-van-detail-info">
-          <p class="van-tag luxury">Luxury</p>
+          <p className="van-tag luxury">Luxury</p>
           <h3 className="title">{van.name}</h3>
           <p>${van.price}/day</p>
         </div>
       </article>
     </>
-  ));
+  );
 
   return (
     <>
@@ -64,7 +64,7 @@ export default function HostVanDetail() {
             </>
           }
         </nav>
-        {<Outlet />}
+        {<Outlet context={van} />}
       </div>
     </>
   );
