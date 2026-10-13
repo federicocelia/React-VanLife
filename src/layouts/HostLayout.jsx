@@ -9,35 +9,49 @@ export default function HostLayout() {
 
   return (
     <>
-      <nav className="host-nav">
-        <NavLink
-          style={({ isActive }) => {
-            return isActive ? activeStyle : null;
-          }}
-          end
-          to="/host"
-        >
-          Dashboard
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => {
-            return isActive ? activeStyle : null;
-          }}
-          to="/host/income"
-        >
-          Income
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => {
-            return isActive ? activeStyle : null;
-          }}
-          to="/host/reviews"
-        >
-          Reviews
-        </NavLink>
-      </nav>
+      <div className="host-nav-container">
+        <nav className="host-nav">
+          <NavLink
+            style={({ isActive }) => {
+              return isActive ? activeStyle : null;
+            }}
+            end
+            to="/host"
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => {
+              return isActive ? activeStyle : null;
+            }}
+            to="/host/income"
+          >
+            Income
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => {
+              return isActive ? activeStyle : null;
+            }}
+            to="/host/vans"
+          >
+            Vans
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => {
+              return isActive ? activeStyle : null;
+            }}
+            to="/host/reviews"
+          >
+            Reviews
+          </NavLink>
+        </nav>
+      </div>
 
-      <Outlet />
+      <div className="host-layout-container">
+        <div className="content-container">
+          <Outlet />
+        </div>
+      </div>
     </>
   );
 }
