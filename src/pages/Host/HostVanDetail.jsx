@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Outlet } from "react-router-dom";
 
 export default function HostVanDetail() {
   /**
@@ -40,6 +40,7 @@ export default function HostVanDetail() {
           Back to all vans
         </Link>
         {van.length === 0 ? <h2>Loading...</h2> : <div>{vanDetailElement}</div>}
+        {<Outlet />}
       </div>
     </>
   );
