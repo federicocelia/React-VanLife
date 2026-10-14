@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { getVans } from "../api";
 
 export default function Vans() {
   // Constants
@@ -11,7 +12,8 @@ export default function Vans() {
 
   // Component state
   const [vans, setVans] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Helper functions
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
@@ -23,11 +25,21 @@ export default function Vans() {
 
   // Data fetching
   useEffect(() => {
-    fetch("/api/vans")
-      .then((response) => response.json())
-      .then((data) => setVans(data.vans))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVans();
+        setVans(data);
+      } catch (error) {
+        console.log("There was an error");
+        console.log(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadVans();
   }, []);
 
   // Filter buttons
@@ -43,7 +55,7 @@ export default function Vans() {
   ));
 
   // Van cards
-  const vansElement = displayedVans.map((van) => (
+  const vansElement = (displayedVans || []).map((van) => (
     <article key={van.id} className="list-van">
       <Link
         to={van.id}
@@ -71,6 +83,10 @@ export default function Vans() {
       </Link>
     </article>
   ));
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
 
   return (
     <>
