@@ -15,6 +15,7 @@ import HostVanPhotos from "./pages/Host/HostVanPhotos.jsx";
 import Reviews from "../src/pages/Host/Reviews.jsx";
 import MainLayout from "../src/layouts/MainLayout.jsx";
 import HostLayout from "../src/layouts/HostLayout.jsx";
+import NotFound from "./pages/NotFound.jsx";
 import "./server.js";
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
                 </Route>
                 <Route path="reviews" element={<Reviews />} />
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </div>
