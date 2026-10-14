@@ -395,6 +395,7 @@ header {
 
 .btn-van-type {
   padding: 0.375rem 1.625rem;
+  text-decoration: none;
 }
 
 .clear-btn {
@@ -477,6 +478,7 @@ header {
 .list-van-name {
   display: flex;
   justify-content: space-between;
+  margin-top: 0.5rem;
 }
 
 .list-day-price {
@@ -496,7 +498,7 @@ header {
   display: inline-block;
 
   width: max-content;
-
+  margin-top: 0.5rem;
   padding: 4px 0.75rem;
 
   color: var(--van-tag-color);
