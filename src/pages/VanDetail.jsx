@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import clsx from "clsx";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 export default function VanDetail() {
   const params = useParams();
+  const location = useLocation();
+
+  const search = location.state?.search || "";
+  const vanType = new URLSearchParams(search).get("type");
 
   const [van, setVan] = useState(null);
 
@@ -13,11 +16,14 @@ export default function VanDetail() {
       .then((data) => setVan(data.vans));
   }, [params.id]);
 
-  console.log(van);
   return (
     <div className="van-detail-container ">
-      <Link className="back-to-full-van-list" to="/vans">
-        Back to all vans
+      <Link
+        className="back-to-full-van-list"
+        to={!location.state ? "/vans" : `/vans?${search}`}
+        relative="path"
+      >
+        Back to {vanType ? `${vanType}` : "all"} vans
       </Link>
       {van ? (
         <div className="van-detail">
@@ -25,7 +31,7 @@ export default function VanDetail() {
             <img src={van.imageUrl} />
           </div>
           <div className="van-detail-description">
-            <p className={clsx("van-tag", `${van.type}`)}>{van.type}</p>
+            <p className={`van-tag ${van.type}`}>{van.type}</p>
             <h2>{van.name}</h2>
             <p className="van-price">
               <span>${van.price}</span>/day

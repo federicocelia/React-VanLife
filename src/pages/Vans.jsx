@@ -6,7 +6,7 @@ export default function Vans() {
   const vanTypes = ["simple", "luxury", "rugged"];
 
   // URL search parameters
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
 
   // Component state
@@ -32,21 +32,22 @@ export default function Vans() {
 
   // Filter buttons
   const buttonsElement = vanTypes.map((vanType) => (
-    <Link
+    <button
       key={vanType}
-      to={`?type=${vanType}`}
+      onClick={() => setSearchParams({ type: `${vanType}` })}
       className={`btn btn-van-type btn-${vanType}`}
       aria-pressed={typeFilter === vanType}
     >
       {capitalize(vanType)}
-    </Link>
+    </button>
   ));
 
   // Van cards
   const vansElement = displayedVans.map((van) => (
     <article key={van.id} className="list-van">
       <Link
-        to={`/vans/${van.id}`}
+        to={van.id}
+        state={{ search: searchParams.toString() }}
         aria-label={`View details for ${van.name} priced at $${van.price} per day`}
       >
         <div className="list-van-img-container">
@@ -83,13 +84,15 @@ export default function Vans() {
         >
           {buttonsElement}
 
-          <Link
-            className="btn btn-van-type clear-btn"
-            aria-label="Clear all active filters"
-            to="."
-          >
-            Clear filters
-          </Link>
+          {typeFilter ? (
+            <button
+              className="btn btn-van-type clear-btn"
+              aria-label="Clear all active filters"
+              onClick={() => setSearchParams({})}
+            >
+              Clear filters
+            </button>
+          ) : null}
         </section>
       </div>
 
