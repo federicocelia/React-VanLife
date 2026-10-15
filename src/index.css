@@ -556,12 +556,14 @@ header {
   margin-bottom: 3rem;
 }
 
-.login-required {
+.login-required,
+.login-error {
   color: red;
   margin-bottom: 1.65rem;
 }
 
-.login-required::before {
+.login-required::before,
+.login-error::before {
   content: "⚠️";
 }
 

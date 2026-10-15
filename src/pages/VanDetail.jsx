@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { getVans } from "../api";
 
 export default function VanDetail() {
   const params = useParams();
@@ -9,12 +10,31 @@ export default function VanDetail() {
   const vanType = new URLSearchParams(search).get("type");
 
   const [van, setVan] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setVan(data.vans));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVans(params.id);
+        setVan(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, [params.id]);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
 
   return (
     <div className="van-detail-container ">

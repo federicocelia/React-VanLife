@@ -1,16 +1,34 @@
-import React from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { loginUser } from "../api";
 
 export default function Login() {
-  const [loginFormData, setLoginFormData] = React.useState({
+  const [loginFormData, setLoginFormData] = useState({
     email: "",
     password: "",
   });
   const location = useLocation();
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
+
+  const navigation = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(loginFormData);
+    setStatus("submitting");
+    loginUser(loginFormData)
+      .then((data) => {
+        setError(null);
+        localStorage.setItem("loggedin", true);
+        navigation("/host", { replace: true });
+      })
+      .catch((error) => {
+        localStorage.removeItem("loggedin");
+        setError(error);
+      })
+      .finally(() => {
+        setStatus("idle");
+      });
   }
 
   function handleChange(e) {
@@ -27,6 +45,7 @@ export default function Login() {
         <h3 className="login-required">{location.state?.message}</h3>
       ) : null}
       <h1>Sign in to your account</h1>
+      {error?.message ? <h3 className="login-error">{error.message}</h3> : null}
       <form onSubmit={handleSubmit} className="login-form">
         <input
           name="email"
@@ -42,7 +61,9 @@ export default function Login() {
           placeholder="Password"
           value={loginFormData.password}
         />
-        <button className="login-cta">Log in</button>
+        <button disabled={status === "submitting"} className="login-cta">
+          {status === "submitting" ? "Logging in..." : "Log in"}
+        </button>
       </form>
     </div>
   );
