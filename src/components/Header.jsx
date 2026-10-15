@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/Logo.svg";
+import avatar from "../assets/images/avatar-icon.png";
 export default function Header() {
   return (
     <header>
@@ -45,6 +46,16 @@ export default function Header() {
               to="/host"
             >
               Host
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="login"
+              className={({ isActive }) =>
+                isActive ? "login-link active" : "login-link"
+              }
+            >
+              <img src={avatar} className="login-icon" />
             </NavLink>
           </li>
         </ul>

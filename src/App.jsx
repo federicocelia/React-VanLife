@@ -15,6 +15,7 @@ import HostVanPhotos from "./pages/Host/HostVanPhotos.jsx";
 import Reviews from "../src/pages/Host/Reviews.jsx";
 import MainLayout from "../src/layouts/MainLayout.jsx";
 import HostLayout from "../src/layouts/HostLayout.jsx";
+import AuthRequired from "./layouts/AuthRequired.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import "./server.js";
 
@@ -27,21 +28,24 @@ export default function App() {
             <Route element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path="about" element={<About />} />
-              <Route path="login" element={<Login />} />
               <Route path="vans" element={<Vans />} />
               <Route path="vans/:id" element={<VanDetail />} />
+              <Route path="login" element={<Login />} />
 
-              <Route path="host" element={<HostLayout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="income" element={<Income />} />
-                <Route path="vans" element={<HostVans />} />
-                <Route path="vans/:id" element={<HostVanDetail />}>
-                  <Route index element={<HostVanInfo />} />
-                  <Route path="photos" element={<HostVanPhotos />} />
-                  <Route path="pricing" element={<HostVanPricing />} />
+              <Route element={<AuthRequired />}>
+                <Route path="host" element={<HostLayout />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="income" element={<Income />} />
+                  <Route path="vans" element={<HostVans />} />
+                  <Route path="vans/:id" element={<HostVanDetail />}>
+                    <Route index element={<HostVanInfo />} />
+                    <Route path="photos" element={<HostVanPhotos />} />
+                    <Route path="pricing" element={<HostVanPricing />} />
+                  </Route>
+                  <Route path="reviews" element={<Reviews />} />
                 </Route>
-                <Route path="reviews" element={<Reviews />} />
               </Route>
+
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

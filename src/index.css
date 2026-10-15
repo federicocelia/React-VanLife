@@ -158,6 +158,17 @@ header {
   color: var(--header-nav-color);
 }
 
+.login-link {
+  display: flex;
+  align-items: center;
+}
+
+.login-icon {
+  display: block;
+  width: clamp(20px, 2rem + 1vw, 35px);
+  height: auto;
+}
+
 .active-link {
   font-weight: 700;
   text-decoration: underline;
@@ -367,6 +378,13 @@ header {
   background-color: #161616;
 }
 
+.cta-about-btn:hover,
+.cta-about-btn:focus {
+  color: var(--btn-text-basic-color);
+
+  background-color: var(--btn-basic-background-color);
+}
+
 /* =========================================
    VANS PAGE
 ========================================= */
@@ -516,6 +534,80 @@ header {
 
 .van-tag.rugged {
   background-color: var(--background-van-rugged);
+}
+
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--header-background-color);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 3rem;
+}
+
+.login-required {
+  color: red;
+  margin-bottom: 1.65rem;
+}
+
+.login-required::before {
+  content: "⚠️";
+}
+
+.login-container h1 {
+  margin-bottom: 3rem;
+}
+
+.login-form > input {
+  border: 1px solid rgba(209, 213, 219);
+  height: 40px;
+  text-indent: 10px;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.login-form > input:focus {
+  outline: none;
+}
+
+.login-form > input:first-of-type {
+  border-radius: var(--border-radius) var(--border-radius) 0px 0px;
+}
+
+.login-form > input:last-of-type {
+  border-radius: 0px 0px var(--border-radius) var(--border-radius);
+  border-top: none;
+}
+
+.login-cta {
+  background-color: var(--cta-btn-background-active);
+  border: none;
+  border-radius: var(--border-radius);
+  height: 55px;
+  margin-top: 22px;
+  color: var(--home-text-color);
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.login-cta:hover,
+.login-cta:focus {
+  color: var(--btn-text-basic-color);
+  background-color: var(--btn-basic-background-color);
 }
 
 /* =========================================
@@ -792,17 +884,119 @@ header {
    FOOTER
 ========================================= */
 
-footer {
+.footer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
 
+  padding: 1rem;
   min-height: 75px;
 
   font-size: 0.875rem;
   color: var(--footer-color);
 
   background-color: var(--footer-background-color);
+}
+
+.author a {
+  color: var(--home-text-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.author a:hover,
+.author a:focus {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin: 0;
+}
+
+.footer-credits {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.footer-credits-btn {
+  cursor: pointer;
+
+  text-underline-offset: 0.2em;
+
+  outline: none;
+}
+
+.footer-credits-btn:hover,
+.footer-credits-btn:focus {
+  text-decoration: underline;
+}
+
+.footer-credits-btn:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.footer-credits-tooltip {
+  position: absolute;
+
+  bottom: calc(100% + 0.25rem);
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 1000;
+
+  width: max-content;
+  max-width: min(85vw, 320px);
+
+  padding: 0.75rem 1rem;
+
+  background-color: #3a3a3a;
+  color: #f5f5f5;
+
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 30%);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+
+  pointer-events: none;
+}
+
+.footer-credits:hover .footer-credits-tooltip,
+.footer-credits:focus-within .footer-credits-tooltip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.footer-credits-tooltip ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.footer-credits-tooltip li + li {
+  margin-top: 0.5rem;
+}
+
+.footer-credits-tooltip a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-credits-tooltip a:hover {
+  color: #d9d9d9;
+}
+
+.footer-credits-tooltip a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 /* =========================================

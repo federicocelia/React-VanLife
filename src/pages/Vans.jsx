@@ -85,7 +85,7 @@ export default function Vans() {
   ));
 
   if (error) {
-    return <h1>There was an error: {error.message}</h1>;
+    return <h1 aria-live="assertive">There was an error: {error.message}</h1>;
   }
 
   return (
@@ -115,7 +115,7 @@ export default function Vans() {
       <div className="vans-container">
         <section className="vans-section">
           <section className="vans-list-section">
-            {loading ? <p>Loading vans...</p> : vansElement}
+            {loading ? <p aria-live="polite">Loading vans...</p> : vansElement}
           </section>
         </section>
       </div>
