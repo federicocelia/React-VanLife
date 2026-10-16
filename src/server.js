@@ -1,3 +1,5 @@
+//until real authentication is implemented keeping mirage to fake authentication with known credentials
+
 import { createServer, Model, Response } from "miragejs";
 
 createServer({
@@ -7,7 +9,7 @@ createServer({
   },
 
   seeds(server) {
-    server.create("van", {
+    /*     server.create("van", {
       id: "1",
       name: "Modest Explorer",
       price: 60,
@@ -72,7 +74,7 @@ createServer({
         "https://assets.scrimba.com/advanced-react/react-router/green-wonder.png",
       type: "rugged",
       hostId: "123",
-    });
+    }); */
 
     server.create("user", {
       id: "123",
@@ -87,7 +89,10 @@ createServer({
     this.logging = false;
     // this.timing = 2000  // => mock a 2 second delay in server response
 
-    this.get("/vans", (schema, request) => {
+    //allowing request from Firebase
+    this.passthrough("https://firestore.googleapis.com/**");
+
+    /*     this.get("/vans", (schema, request) => {
       // return new Response(400, {}, {error: "Error fetching data"})
       return schema.vans.all();
     });
@@ -107,7 +112,7 @@ createServer({
       const id = request.params.id;
       return schema.vans.findBy({ id, hostId: "123" });
     });
-
+ */
     this.post("/login", (schema, request) => {
       const { email, password } = JSON.parse(request.requestBody);
       // ⚠️ This is an extremely naive version of authentication. Not for real development 😅

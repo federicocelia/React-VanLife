@@ -7,11 +7,13 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const location = useLocation();
+
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
-
+  const location = useLocation();
   const navigation = useNavigate();
+
+  const redirectPath = location.state?.location || "/host";
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function Login() {
       .then((data) => {
         setError(null);
         localStorage.setItem("loggedin", true);
-        navigation("/host", { replace: true });
+        navigation(redirectPath, { replace: true });
       })
       .catch((error) => {
         localStorage.removeItem("loggedin");
